@@ -1,15 +1,11 @@
-'use strict';
+const express = require("express");
+const app = express();
+const port = process.env.PORT || 3000;
 
-var fs = require('fs');
-var path = require('path');
+app.get("/", (req,res) => {
+  res.json({message: "Hello From Express!!"});
+});
 
-exports.get = function(event, context, callback) {
-  var contents = fs.readFileSync(`public${path.sep}index.html`);
-  var result = {
-    statusCode: 200,
-    body: contents.toString(),
-    headers: {'content-type': 'text/html'}
-  };
-
-  callback(null, result);
-};
+app.listen(port, () => {
+  console.log("Server is Up & Running!!");
+})
